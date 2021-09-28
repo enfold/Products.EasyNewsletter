@@ -41,6 +41,7 @@ setup(
         'nameparser',
         'plone.api',
         'plone.app.upgrade',
+        'plone.app.widgets',
         'Products.Archetypes',
         'Products.ATContentTypes',
         'Products.CMFPlone',

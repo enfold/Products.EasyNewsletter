@@ -5,7 +5,8 @@ Changelog
 3.0.10 (unreleased)
 -------------------
 
-- Nothing changed yet.
+- Depend on plone.app.widgets and use the AjaxSelectWidget for users and groups
+  [frapell]
 
 
 3.0.9 (2019-09-19)

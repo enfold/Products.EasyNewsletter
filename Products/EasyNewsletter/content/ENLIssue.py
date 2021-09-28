@@ -8,6 +8,7 @@ from email.MIMEMultipart import MIMEMultipart
 from email.MIMEText import MIMEText
 from plone import api
 from plone.app.blob.field import ImageField
+from plone.app.widgets import at as at_widgets
 from plone.registry.interfaces import IRegistry
 from Products.Archetypes import atapi
 from Products.ATContentTypes.content.topic import ATTopic
@@ -106,35 +107,35 @@ schema = atapi.Schema((
 
     atapi.LinesField(
         'ploneReceiverMembers',
-        vocabulary='get_plone_members',
         default_method='get_ploneReceiverMembers_defaults',
-        widget=atapi.MultiSelectionWidget(
+        widget=at_widgets.AjaxSelectWidget(
             label=_(
-                u'EasyNewsletter_label_ploneReceiverMembers',
-                default=u'Plone Members to receive the newsletter'),
+                u"EasyNewsletter_label_ploneReceiverMembers",
+                default=u"Plone Members to receive the newsletter"),
             description=_(
-                u'EasyNewsletter_ENLIssue_help_ploneReceiverMembers',
-                default=u'Choose Plone Members which should receive \
-                        the newsletter.'),
+                u"EasyNewsletter_help_ploneReceiverMembers",
+                default=u"Choose Plone Members which should receive \
+                    the newsletter. Changing this setting does not affect \
+                    already existing issues."),
             i18n_domain='EasyNewsletter',
-            size=20,
+            vocabulary="plone.app.vocabularies.Users",
         )
     ),
 
     atapi.LinesField(
         'ploneReceiverGroups',
-        vocabulary='get_plone_groups',
         default_method='get_ploneReceiverGroups_defaults',
-        widget=atapi.MultiSelectionWidget(
+        widget=at_widgets.AjaxSelectWidget(
             label=_(
-                u'EasyNewsletter_label_ploneReceiverGroups',
-                default=u'Plone Groups to receive the newsletter'),
+                u"EasyNewsletter_label_ploneReceiverGroups",
+                default=u"Plone Groups to receive the newsletter"),
             description=_(
-                u'EasyNewsletter_ENLIssue_help_ploneReceiverGroups',
-                default=u'Choose Plone Groups which members should \
-                        receive the newsletter.'),
+                u"EasyNewsletter_help_ploneReceiverGroups",
+                default=u"Choose Plone Groups which members should \
+                    receive the newsletter. Changing this setting does not \
+                    affect already existing issues."),
             i18n_domain='EasyNewsletter',
-            size=10,
+            vocabulary="plone.app.vocabularies.Groups",
         )
     ),
 

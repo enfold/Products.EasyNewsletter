@@ -6,6 +6,7 @@ from AccessControl.SecurityManagement import setSecurityManager
 from AccessControl.User import UnrestrictedUser as BaseUnrestrictedUser
 from archetypes.referencebrowserwidget.widget import ReferenceBrowserWidget
 from plone.app.blob.field import ImageField
+from plone.app.widgets import at as at_widgets
 from plone.registry.interfaces import IRegistry
 from Products.Archetypes import atapi
 from Products.ATContentTypes.content.topic import ATTopic
@@ -273,9 +274,8 @@ schema = atapi.Schema((
 
     atapi.LinesField(
         'ploneReceiverMembers',
-        vocabulary="get_plone_members",
         schemata='recipients',
-        widget=atapi.MultiSelectionWidget(
+        widget=at_widgets.AjaxSelectWidget(
             label=_(
                 u"EasyNewsletter_label_ploneReceiverMembers",
                 default=u"Plone Members to receive the newsletter"),
@@ -285,15 +285,14 @@ schema = atapi.Schema((
                     the newsletter. Changing this setting does not affect \
                     already existing issues."),
             i18n_domain='EasyNewsletter',
-            size=20,
+            vocabulary="plone.app.vocabularies.Users",
         )
     ),
 
     atapi.LinesField(
         'ploneReceiverGroups',
-        vocabulary="get_plone_groups",
         schemata='recipients',
-        widget=atapi.MultiSelectionWidget(
+        widget=at_widgets.AjaxSelectWidget(
             label=_(
                 u"EasyNewsletter_label_ploneReceiverGroups",
                 default=u"Plone Groups to receive the newsletter"),
@@ -303,7 +302,7 @@ schema = atapi.Schema((
                     receive the newsletter. Changing this setting does not \
                     affect already existing issues."),
             i18n_domain='EasyNewsletter',
-            size=10,
+            vocabulary="plone.app.vocabularies.Groups",
         )
     ),
 
