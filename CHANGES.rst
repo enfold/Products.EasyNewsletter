@@ -2,8 +2,8 @@ Changelog
 =========
 
 
-3.0.10 (unreleased)
--------------------
+3.0.9+enfold1 (2022-08-19)
+--------------------------
 
 - Depend on plone.app.widgets and use the AjaxSelectWidget for users and groups
   [frapell]
